@@ -1,0 +1,125 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<style>
+    html{
+        font-size: 2.666vw;
+    }
+    body{
+        margin: 0;
+        padding: 0;
+    }
+    .wrap{
+        position: relative;
+        width: 37.5rem;
+        height: 100%;
+        padding: 1rem;
+        box-sizing: border-box;
+    }
+    .wrap>span{
+        position: absolute;
+        top: calc(50% - 14.4rem);
+        left: calc((50% - 15.2rem));
+        font-size: 1.8rem;
+        color: #fff;
+        display: none;
+    }
+    .wrap>img{
+        width: 100%;
+        border: 1rem solid pink;
+        margin: 1rem 0;
+        box-sizing: border-box;
+    }
+    .wrap>p{
+        text-indent: 3.5rem;
+        padding: 0 1rem ;
+        font-size: 2rem;
+        line-height: 3rem;
+        color: #aaa;
+        display: none;
+        letter-spacing: 1rem;
+        border: 1rem solid pink;
+    }
+    .wrap>img:nth-child(1){
+        display: none;
+    }
+    .title{
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(120, 120, 500, .5);
+    }
+    .title>p{
+        font-size: 2.4rem;
+        color: aliceblue;
+    }
+</style>
+<body>
+    <div class="wrap">
+        <img src="./img/微信图片_20221005223749.jpg" alt="">
+        <span></span>
+        <p>我和我的宝贝已经在一起两年了，这两年里我不知道我的宝宝开不开心，但是我知道的是我很开心，在这两年里我很多次都惹我的宝宝生气，让宝宝伤心，在这里我要对我的宝宝说一声对不起，让我的宝宝受委屈了，抱抱我的宝。宝宝陪我走完了我的大学生活，所以我也应该陪宝宝走过宝宝的大学生活，我还想陪宝宝走完以后的每一天，每一分钟，我想让宝宝的生活里面都有我的身影。爱你我的宝贝老婆！！！</p>
+        
+        <div class="title">
+            <audio src="./起风了.mp3" loop autoplay></audio>
+            <p>准备好了嘛猪猪</p>
+        </div>
+    </div>
+</body>
+<script>
+    var wrap = document.querySelector('.wrap')
+    var p = document.querySelector('.wrap>p')
+    var btn = document.querySelector('.title')
+    var auto = document.querySelector('.title>audio')
+    var span = document.querySelector('span')
+    var im = document.querySelector('.wrap>img:nth-child(1)')
+    btn.onclick = function(){
+        play()
+        btn.style.display = 'none'
+        p.style.display = 'block'
+        im.style.display = 'block'
+        span.style.display = 'block'
+        for(var i = 1; i<45;i++){
+            var img = document.createElement('img')
+            wrap.append(img)
+            img.src = `./img/1 (${i}).jpg`
+        }
+
+    }
+
+    var current = new Date().getTime()
+    var country = new Date(2020,9,9,0,0,0).getTime()
+    var sub = Math.floor((current - country) / 1000)
+    var d = Math.floor(sub / 86400)
+    var h = Math.floor((sub - d * 86400) / 3600)
+    var m = Math.floor((sub - d * 86400 - h * 3600) / 60)
+    var s = sub % 60
+    setInterval(function(){
+        s++
+        if(s >= 60){
+            s = 0
+            m ++
+        }
+        if(m >= 60){
+            m = 0
+            h ++
+        }
+        if (h >= 24) {
+            d ++
+            h = 0
+        }
+    span.innerHTML = `在一起${d}天,${h}小时，${m}分钟，${s}秒`
+    },1000)
+    
+    // 开始播放音乐
+    function play(){
+        auto.play()
+    }
+</script>
+</html>
